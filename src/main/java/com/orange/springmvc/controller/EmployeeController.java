@@ -7,10 +7,13 @@ package com.orange.springmvc.controller;
 
 
 import com.orange.springmvc.domain.Employee;
+import com.orange.springmvc.service.EmployeeService;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,7 +26,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class EmployeeController {
 
     private String commonPackage = "employee/";
-
+    @Autowired
+    private EmployeeService employeeService;
     /**
      *
      * @param model
@@ -46,5 +50,16 @@ public class EmployeeController {
         Employee employee = new Employee();
         model.addAttribute("employee", employee);
         return commonPackage + "employeeForm";
+    }
+    /**
+     * 
+     * @param employee
+     * @return
+     * @throws IOException 
+     */
+    @RequestMapping(value = "/saveEmployee.htm", method = RequestMethod.POST)
+    public String employeeForm(@ModelAttribute("employee") Employee employee,Model model) throws IOException {
+         model.addAttribute("message", employeeService.save(employee));
+        return commonPackage + "messageAfterSavingEmployee";
     }
 }

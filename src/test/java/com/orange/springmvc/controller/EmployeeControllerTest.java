@@ -5,6 +5,7 @@
 package com.orange.springmvc.controller;
 
 import com.orange.springmvc.domain.Employee;
+import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,14 +17,18 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.util.Assert;
+import static org.hamcrest.Matchers.containsString;
+
 /**
  *
  * @author Ahmed Nashaat OLC
@@ -56,8 +61,25 @@ public class EmployeeControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("employee/employeeForm"))
                 .andExpect(model().attributeExists("employee"))
+                //                .andExpect(xpath("//input[@name='summary']").exists())
+                //                .andExpect(xpath("//textarea[@name='text']").exists())
                 .andReturn();
-        MockHttpServletRequest httpServletRequest=result.getRequest();
-        Assert.isInstanceOf(Employee.class,httpServletRequest.getAttribute("employee"));
+        MockHttpServletRequest httpServletRequest = result.getRequest();
+        Assert.isInstanceOf(Employee.class, httpServletRequest.getAttribute("employee"));
+    }
+
+    @Test
+    public void saveEmployeeTest() throws Exception {
+        Matcher matcher = containsString("Manage Entities");
+        MvcResult result = mockMvc.perform(post("/employee/saveEmployee.htm")
+                .param("firstName", "Ahmed")
+                .param("lastName", "Nashat")
+                .param("salary", "100"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("employee/messageAfterSavingEmployee"))
+                .andExpect(model().attributeExists("message"))
+                .andReturn();
+        MockHttpServletRequest httpServletRequest = result.getRequest();
+        Assert.hasText("Hello Ahmed Nashat,your salary is 100.", httpServletRequest.getAttribute("employee").toString());
     }
 }
