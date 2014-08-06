@@ -12,7 +12,7 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-         <spring.version>3.2.2.RELEASE</spring.version>
+        <spring.version>3.2.2.RELEASE</spring.version>
         <spring.security.version>3.1.0.RELEASE</spring.security.version>
         <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
     </properties>
@@ -212,6 +212,12 @@
             <version>4.4.0.Final</version>
         </dependency>
         <!-- test dependency -->
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>1.3</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
