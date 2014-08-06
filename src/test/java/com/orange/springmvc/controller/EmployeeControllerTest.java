@@ -37,7 +37,7 @@ public class EmployeeControllerTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
     @Test
-    public void checkShopSearchResultSecurity() throws Exception {
+    public void homeTest() throws Exception {
         mockMvc.perform(get("/employee/home.htm")) .andExpect(status().isOk()).andExpect(content().string("hello!!!!!!"));
     }
 }
