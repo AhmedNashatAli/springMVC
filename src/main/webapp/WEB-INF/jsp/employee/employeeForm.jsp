@@ -19,7 +19,7 @@
     </head>
     <body>
 
-        <form:form action="#" commandName="employee" method="post">
+        <form:form action="saveEmployee.htm" commandName="employee" method="post">
             First Name <form:errors path="firstName" cssClass="error"/><form:input path="firstName" size="25" maxlength="50" cssClass="form_data"/><br>
             Last Name <form:errors path="lastName" cssClass="error"/><form:input path="lastName" size="25" maxlength="50" cssClass="form_data"/><br>
             Salary <form:errors path="salary" cssClass="error"/><form:input path="salary" size="25" maxlength="50" cssClass="form_data"/><br>

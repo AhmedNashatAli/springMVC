@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>${message}</h1>
+        <a href="employeeForm.htm">Add another employee.</a>
     </body>
 </html>
