@@ -10,9 +10,11 @@ import com.orange.springmvc.domain.Employee;
 import com.orange.springmvc.service.EmployeeService;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -58,8 +60,15 @@ public class EmployeeController {
      * @throws IOException 
      */
     @RequestMapping(value = "/saveEmployee.htm", method = RequestMethod.POST)
-    public String employeeForm(@ModelAttribute("employee") Employee employee,Model model) throws IOException {
-         model.addAttribute("message", employeeService.save(employee));
+    public String employeeForm(@ModelAttribute("employee") @Valid Employee employee, BindingResult bindingResult,Model model) throws IOException {
+         
+         if (bindingResult.hasErrors()) {
+           model.addAttribute("errorList", bindingResult.getAllErrors());
+           model.addAttribute("employee", employee);
+             return commonPackage + "employeeForm";
+        }else{
+        model.addAttribute("message", employeeService.save(employee));
+    }
         return commonPackage + "messageAfterSavingEmployee";
     }
 }

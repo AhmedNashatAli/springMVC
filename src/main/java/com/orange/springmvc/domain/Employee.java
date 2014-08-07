@@ -4,6 +4,9 @@
  */
 package com.orange.springmvc.domain;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
 /**
  *
  * @author Ahmed Nashaat OLC
@@ -11,8 +14,11 @@ package com.orange.springmvc.domain;
 public class Employee {
 
     private long id;
+    @Size(min = 2, max = 30)
     private String firstName;
+    @Size(min = 2, max = 30)
     private String lastName;
+    @Min(1200)
     private int salary;
 
     public long getId() {
