@@ -211,6 +211,12 @@
             <artifactId>hibernate-search</artifactId>
             <version>4.4.0.Final</version>
         </dependency>
+        <!-- h2-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.180</version>
+        </dependency>
         <!-- test dependency -->
         <dependency>
             <groupId>org.hamcrest</groupId>
