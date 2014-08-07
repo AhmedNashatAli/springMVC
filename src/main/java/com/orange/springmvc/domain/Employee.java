@@ -14,11 +14,8 @@ import javax.validation.constraints.Size;
 public class Employee {
 
     private long id;
-    @Size(min = 2, max = 30)
     private String firstName;
-    @Size(min = 2, max = 30)
     private String lastName;
-    @Min(1200)
     private int salary;
 
     public long getId() {

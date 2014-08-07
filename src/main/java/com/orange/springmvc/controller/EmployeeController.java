@@ -60,15 +60,8 @@ public class EmployeeController {
      * @throws IOException 
      */
     @RequestMapping(value = "/saveEmployee.htm", method = RequestMethod.POST)
-    public String employeeForm(@ModelAttribute("employee") @Valid Employee employee, BindingResult bindingResult,Model model) throws IOException {
-         
-         if (bindingResult.hasErrors()) {
-           model.addAttribute("errorList", bindingResult.getAllErrors());
-           model.addAttribute("employee", employee);
-             return commonPackage + "employeeForm";
-        }else{
+    public String employeeForm(@ModelAttribute("employee") Employee employee,Model model) throws IOException {
         model.addAttribute("message", employeeService.save(employee));
-    }
         return commonPackage + "messageAfterSavingEmployee";
     }
 }
