@@ -5,6 +5,7 @@
 package com.orange.springmvc.domain;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 /**
@@ -20,6 +21,11 @@ public class Employee {
     private String lastName;
     @Min(1200)
     private int salary;
+    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
+        +"[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
+        +"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+             message="{invalid.email}") 
+    private String email;
 
     public long getId() {
         return id;
@@ -52,4 +58,13 @@ public class Employee {
     public void setSalary(int salary) {
         this.salary = salary;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
 }
