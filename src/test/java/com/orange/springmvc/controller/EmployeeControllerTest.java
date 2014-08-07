@@ -21,7 +21,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -74,12 +73,13 @@ public class EmployeeControllerTest {
         MvcResult result = mockMvc.perform(post("/employee/saveEmployee.htm")
                 .param("firstName", "Ahmed")
                 .param("lastName", "Nashat")
-                .param("salary", "100"))
+                .param("email", "tali.ext@orange.com")
+                .param("salary", "1200"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("employee/messageAfterSavingEmployee"))
                 .andExpect(model().attributeExists("message"))
                 .andReturn();
         MockHttpServletRequest httpServletRequest = result.getRequest();
-        Assert.hasText("Hello Ahmed Nashat,your salary is 100.", httpServletRequest.getAttribute("employee").toString());
+        Assert.hasText("Hello Ahmed Nashat,your salary is 1200", httpServletRequest.getAttribute("message").toString());
     }
 }

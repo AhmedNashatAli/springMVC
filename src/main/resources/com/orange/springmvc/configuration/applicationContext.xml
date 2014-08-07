@@ -33,7 +33,9 @@
             <props>               
                 <prop key="hibernate.connection.characterEncoding">UTF-8</prop>
                 <prop key="hibernate.connection.useUnicode">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">validate</prop>
+               <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+        <prop key="hibernate.show_sql">true</prop>
+        <prop key="hibernate.hbm2ddl.auto">migrate</prop>
             </props>
         </property>
     </bean>
@@ -43,8 +45,12 @@
     </bean>
  
    
+    
     <!--  annotation scanner   -->
     <mvc:annotation-driven />
+    
+    <!--  transactionManager component scan   -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
     
     <!--  scanning packages for annotations based from orange-->
     <context:component-scan base-package="com.orange" >
