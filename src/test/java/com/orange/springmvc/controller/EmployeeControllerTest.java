@@ -74,12 +74,13 @@ public class EmployeeControllerTest {
         MvcResult result = mockMvc.perform(post("/employee/saveEmployee.htm")
                 .param("firstName", "Ahmed")
                 .param("lastName", "Nashat")
-                .param("salary", "100"))
+                .param("email", "tali.ext@orange.com")
+                .param("salary", "1200"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("employee/messageAfterSavingEmployee"))
                 .andExpect(model().attributeExists("message"))
                 .andReturn();
         MockHttpServletRequest httpServletRequest = result.getRequest();
-        Assert.hasText("Hello Ahmed Nashat,your salary is 100.", httpServletRequest.getAttribute("employee").toString());
+        Assert.hasText("Hello Ahmed Nashat,your salary is 1200.", httpServletRequest.getAttribute("employee").toString());
     }
 }
