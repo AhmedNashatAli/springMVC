@@ -4,6 +4,7 @@
  */
 package com.orange.springmvc.domain;
 
+import com.orange.springmvc.validation.Phone;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -26,6 +27,8 @@ public class Employee {
         +"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
              message="{invalid.email}") 
     private String email;
+    @Phone
+    private String phone;
 
     public long getId() {
         return id;
@@ -65,6 +68,14 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
     
 }

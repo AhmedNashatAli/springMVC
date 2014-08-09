@@ -23,6 +23,7 @@
             Last Name <form:errors path="lastName" cssClass="error"/><form:input path="lastName" size="25" maxlength="50" cssClass="form_data"/><br>
             Email <form:errors path="email" cssClass="error"/><form:input path="email"  cssClass="form_data"/><br>
             Salary <form:errors path="salary" cssClass="error"/><form:input path="salary" size="25" maxlength="50" cssClass="form_data"/><br>
+            Phone <form:errors path="phone" cssClass="error"/><form:input path="phone" size="25" maxlength="50" cssClass="form_data"/><br>
             <input type="submit" value="Save">
         </form:form>
 
