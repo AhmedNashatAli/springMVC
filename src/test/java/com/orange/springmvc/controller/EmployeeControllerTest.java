@@ -50,7 +50,8 @@ public class EmployeeControllerTest {
 
     @Test
     public void homeTest() throws Exception {
-        mockMvc.perform(get("/employee/home.htm")).andExpect(status().isOk()).andExpect(content().string("hello!!!!!!"));
+        mockMvc.perform(get("/employee/home.htm").param("lang", "en")).andExpect(status().isOk()).andExpect(content().string("hello!!!!!!"));
+        mockMvc.perform(get("/employee/home.htm").param("lang", "ar")).andExpect(status().isOk()).andExpect(content().string("مرحبا!!!!!!"));
     }
 
     @Test

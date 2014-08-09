@@ -9,9 +9,12 @@ package com.orange.springmvc.controller;
 import com.orange.springmvc.domain.Employee;
 import com.orange.springmvc.service.EmployeeService;
 import java.io.IOException;
+import java.util.Locale;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +33,8 @@ public class EmployeeController {
     private String commonPackage = "employee/";
     @Autowired
     private EmployeeService employeeService;
+     @Autowired
+    private MessageSource messageSource;
     /**
      *
      * @param model
@@ -37,8 +42,10 @@ public class EmployeeController {
      * @throws IOException
      */
     @RequestMapping(value = "/home.htm", method = RequestMethod.GET)
-    public void home(HttpServletResponse response) throws IOException {
-        response.getWriter().write("hello!!!!!!");
+    public void home(Locale locale,HttpServletResponse response) throws IOException {
+        String responseMessage = messageSource.getMessage("home.welcome", null, locale);
+        response.setContentType("text/html; charset=UTF-8");
+        response.getWriter().write(responseMessage);
     }
     /**
      * 

@@ -5,6 +5,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,12 +19,17 @@
         </style> 
     </head>
     <body>
+        <div style="float: right"><a href="employeeForm.htm?lang=en">English</a>|<a href="employeeForm.htm?lang=ar">عربى</a></div>
         <form:form action="saveEmployee.htm" commandName="employee" method="post">
-            First Name <form:errors path="firstName" cssClass="error"/><form:input path="firstName" size="25" maxlength="50" cssClass="form_data"/><br>
-            Last Name <form:errors path="lastName" cssClass="error"/><form:input path="lastName" size="25" maxlength="50" cssClass="form_data"/><br>
-            Email <form:errors path="email" cssClass="error"/><form:input path="email"  cssClass="form_data"/><br>
-            Salary <form:errors path="salary" cssClass="error"/><form:input path="salary" size="25" maxlength="50" cssClass="form_data"/><br>
-            <input type="submit" value="Save">
+            <spring:message code="employee.form.firstName"/> <form:input path="firstName" size="25" maxlength="50" cssClass="form_data"/><br>
+            <form:errors path="firstName" cssClass="error"/><br>
+            <spring:message code="employee.form.lastName"/><form:input path="lastName" size="25" maxlength="50" cssClass="form_data"/><br> 
+            <form:errors path="lastName" cssClass="error"/><br>
+            <spring:message code="employee.form.email"/> <form:input path="email"  cssClass="form_data"/><br>
+            <form:errors path="email" cssClass="error"/><br>
+            <spring:message code="employee.form.salary"/> <form:input path="salary" size="25" maxlength="50" cssClass="form_data"/><br>
+            <form:errors path="salary" cssClass="error"/><br>
+            <input type="submit" value="<spring:message code="employee.form.save"/>">
         </form:form>
 
     </body>
