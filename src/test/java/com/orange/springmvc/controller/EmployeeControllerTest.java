@@ -76,12 +76,12 @@ public class EmployeeControllerTest {
                 .param("lastName", "Nashat")
                 .param("email", "tali.ext@orange.com")
                 .param("salary", "1200")
-                .param("phone", "0100790540"))
+                .param("phones[0].number", "0100790540"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("employee/messageAfterSavingEmployee"))
                 .andExpect(model().attributeExists("message"))
                 .andReturn();
         MockHttpServletRequest httpServletRequest = result.getRequest();
-        Assert.hasText("Hello Ahmed Nashat,your salary is 1200.", httpServletRequest.getAttribute("employee").toString());
+        org.junit.Assert.assertEquals("Hello Ahmed Nashat,your salary is 1200,your mail is tali.ext@orange.com and your phone is 0100790540.", httpServletRequest.getAttribute("message").toString());
     }
 }

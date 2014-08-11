@@ -16,7 +16,12 @@ public class EmployeeServiceImp implements EmployeeService {
 
     @Override
     public String save(Employee employee) {
-      return "Hello "+employee.getFirstName()+" "+employee.getLastName()+",your salary is "+employee.getSalary()+".";
+        StringBuilder stringBuilder=new StringBuilder();
+        for (int i = 0; i < employee.getPhones().size(); i++) {
+            stringBuilder.append(employee.getPhones().get(i).getNumber());
+            stringBuilder.append(" ");
+        }
+      return "Hello "+employee.getFirstName()+" "+employee.getLastName()+",your salary is "+employee.getSalary()+",your mail is "+employee.getEmail()+" and your phone is "+stringBuilder+".";
     }
 
     

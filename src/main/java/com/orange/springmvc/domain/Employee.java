@@ -4,7 +4,8 @@
  */
 package com.orange.springmvc.domain;
 
-import com.orange.springmvc.validation.Phone;
+import java.util.List;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -22,13 +23,13 @@ public class Employee {
     private String lastName;
     @Min(1200)
     private int salary;
-    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
-        +"[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
-        +"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
-             message="{invalid.email}") 
+    @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
+            + "[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
+            + "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+            message = "{invalid.email}")
     private String email;
-    @Phone
-    private String phone;
+    @Valid
+    private List<Phone> phones;
 
     public long getId() {
         return id;
@@ -70,12 +71,15 @@ public class Employee {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public List<Phone> getPhones() {
+        return phones;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhones(List<Phone> phones) {
+        this.phones = phones;
     }
+
+    
+
     
 }
